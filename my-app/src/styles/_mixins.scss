@@ -1,0 +1,10 @@
+@mixin padding($top, $right, $bottom, $left) {
+    padding: $top $right $bottom $left;
+  }
+  @mixin font-style($size, $weight) {
+    font-size: $size;
+    font-weight: $weight;
+  }
+  @mixin margin($top, $right, $bottom, $left) {
+    padding: $top $right $bottom $left;
+  }
