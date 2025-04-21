@@ -1,0 +1,21 @@
+.custom-scrollbar {
+    overflow-y: auto;
+  
+    // Webkit (Chrome, Safari)
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color: #a99741;
+      border-radius: 4px;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  
+    // Firefox
+    scrollbar-width: thin;
+    scrollbar-color: #a99741 transparent;
+  }

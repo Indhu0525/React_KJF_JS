@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Login.module.scss";
 import { Box, Container } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { CommonButton } from "../../components/button/CommonButton";
+import { CommonButton } from "../../components/common/button/CommonButton";
 export const Login = () => {
   return (
     <div className={`${styles.loginPage} flex justify-center items-center flex-col gap-[30px] h-full`}>
