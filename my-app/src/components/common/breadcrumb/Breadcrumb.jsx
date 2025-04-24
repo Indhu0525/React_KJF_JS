@@ -1,9 +1,8 @@
 // src/common/breadcrumb/Breadcrumb.jsx
 import React from 'react';
-import { Breadcrumbs, Typography, Link } from '@mui/material';
+import { Breadcrumbs, Typography } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { Link as RouterLink } from 'react-router-dom';
-
+import '../../../styles/commoncss.scss';
 export const Breadcrumb = ({ breadcrumbs }) => {
   return (
     <Breadcrumbs
@@ -17,22 +16,14 @@ export const Breadcrumb = ({ breadcrumbs }) => {
   >
     {breadcrumbs.map((crumb, index) => {
       const isLast = index === breadcrumbs.length - 1;
-      const path = `/${crumb.toLowerCase().replace(/\s+/g, '-')}`;
+ 
   
       return isLast ? (
-        <Typography key={index} color="text.primary">
+        <Typography className='breadcrumb !font-semibold !text-[1rem]' key={index} color="text.primary">
           {crumb}
         </Typography>
       ) : (
-        <Link
-          key={index}
-          component={RouterLink}
-          to={path}
-          underline="hover"
-          color="inherit"
-        >
           {crumb}
-        </Link>
       );
     })}
   </Breadcrumbs>

@@ -34,7 +34,7 @@ export const MainLayout = () => {
          bgcolor: '#FFE150',  // Yellow background for entire page
          overflow: 'hidden'   // Prevent scrollbars on the main container
        }}>
-         <CssBaseline />
+     
       
        <Sidebar   open={open} 
            isMobile={isMobile} 
@@ -48,12 +48,7 @@ export const MainLayout = () => {
            margin: '15px 15px 15px 0px',
            borderRadius: '15px'
          }}>
-           {/* Header component */}
-        
-          {/* <Header   open={open} 
-               isMobile={isMobile} 
-               handleDrawerOpen={handleDrawerOpen} />
-           */}
+       
            <Header open={open} 
                isMobile={isMobile} 
                handleDrawerOpen={handleDrawerOpen}
@@ -63,7 +58,7 @@ export const MainLayout = () => {
              flexGrow: 1, 
              bgcolor: '#ffffff',
              height: 'calc(100vh - 64px)',
-             overflow: 'auto',  
+             overflow: 'hidden',  
              padding: 3       
            }}>
               <Outlet /> 
