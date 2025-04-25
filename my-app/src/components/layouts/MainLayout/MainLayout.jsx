@@ -58,7 +58,7 @@ export const MainLayout = () => {
              flexGrow: 1, 
              bgcolor: '#ffffff',
              height: 'calc(100vh - 64px)',
-             overflow: 'hidden',  
+        
              padding: 3       
            }}>
               <Outlet /> 

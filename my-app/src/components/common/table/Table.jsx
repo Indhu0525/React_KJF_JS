@@ -1,130 +1,239 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import { CommonButton } from '../button/CommonButton';
+import * as React from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Switch,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { BiEditAlt } from "react-icons/bi";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { CommonButton } from "../button/CommonButton";
+// Your styled switch
+const IOSSwitch = styled((props) => (
+  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+))(({ theme }) => ({
+  width: 42,
+  height: 26,
+  padding: 0,
+  "& .MuiSwitch-switchBase": {
+    padding: 0,
+    margin: 2,
+    transitionDuration: "300ms",
+    "&.Mui-checked": {
+      transform: "translateX(16px)",
+      color: "#fff",
+      "& + .MuiSwitch-track": {
+        backgroundColor: "#65C466",
+        opacity: 1,
+        border: 0,
+      },
+    },
+  },
+  "& .MuiSwitch-thumb": {
+    boxSizing: "border-box",
+    width: 22,
+    height: 22,
+  },
+  "& .MuiSwitch-track": {
+    borderRadius: 13,
+    backgroundColor: "#E9E9EA",
+    opacity: 1,
+  },
+}));
 
+// Table columns
 const columns = [
-  { id: 'Role', label: 'Role',  },
-  { id: 'Description', label: 'Description', },
-  {
-    id: 'Action',
-    label: 'Action',
-  
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
-  
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
+  { id: "Role", label: "Role", width: 140 },
+  { id: "Description", label: "Description", width: 500 },
+  { id: "Action", label: "Action", width: 90 },
+  { id: "Permission", label: "Permission", width: 90 },
 ];
 
-function createData(Role, Description, Action, size) {
-
-  return { Role, Description, Action, size };
-}
-
-const rows = [
-    createData('Admin', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.', 1324171354, 3287263),
-    createData('Senior Manager', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.', 1403500365, 9596961),
-    createData('Sales Manager', 'ILorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.T', 60483973, 301340),
-    createData('United States', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.', 327167434, 9833520),
-    createData('Inward Manager', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.', 37602103, 9984670),
-    createData('Executive', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.', 25475400, 7692024),
-    createData('HOD', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.', 83019200, 357578),
-    createData('Production Manager', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.', 4857000, 70273),
-    createData('Mexico', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.', 126577691, 1972550),
-    createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
+// Example data from API (no icons)
+const apiData = [
+  {
+    Role: "Admin",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "Senior Manager",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "Sales Manager",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "United States",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "Inward Manager",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "Executive",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "HOD",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "Production Manager",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "Mexico",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "Admin",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "Admin",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "Admin",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "Admin",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "Admin",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
+  {
+    Role: "Admin",
+    Description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at quam tortor. Suspendisse scelerisque mauris non purus pulvinar consequat sit amet sit amet nibh.",
+  },
 ];
 
 export default function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage] = React.useState(10);
+  const rows = apiData;
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  const handleChangePage = (event, newPage) => setPage(newPage);
+  
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  const totalPages = Math.ceil(rows.length / rowsPerPage);
 
   return (
-    <div sx={{ width: '100%', overflow: 'auto', }}>
-      <TableContainer sx={{ maxHeight: 'calc(100vh - 250px)', overflow: 'auto',border: 'none',width:'100%' }}>
-        <Table stickyHeader aria-label="sticky table"sx={{ borderCollapse: 'collapse',  }}>
+    <div style={{ width: "100%", overflowX: "auto" }}>
+      <TableContainer sx={{ maxHeight: "calc(100vh - 250px)" }}>
+        <Table stickyHeader>
           <TableHead>
-            <TableRow  sx={{ border: 'none',}}>
+            <TableRow>
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
-                  align={column.align}
-                  sx={{
-                    borderBottom: 'none',
-                    wordWrap: 'break-word',
-                    whiteSpace: 'normal', // allows wrapping
-                 
-                  }}
-                  className='!text-sm !font-semibold !text-gray-500'
+                  align={column.align || "left"}
+                  sx={{ minWidth: column.width, border: "none" }}
+                  className="!text-sm !font-semibold !text-gray-500 "
                 >
                   {column.label}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
+
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}sx={{ border: 'none' }}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align} sx={{ borderBottom: 'none' }} className='!text-sm !font-semibold'>
-                        {column.id === 'Action' ? (
+              .map((row, idx) => (
+                <TableRow hover role="checkbox" tabIndex={-1} key={idx}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+
+                    return (
+                      <TableCell
+                        key={column.id}
+                        align={column.align || "left"}
+                        sx={{
+                          maxWidth:
+                            column.id === "Description" ? column.width : "auto",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "normal",
+                          border: "none",
+                          fontWeight: "600",
+                          color: "#303030",
+                          fontSize: "0.9rem",
+                        }}
+                      >
+                        {column.id === "Action" ? (
+                          <div className="flex justify-left items-center gap-2">
+                            <IOSSwitch  />
+                            <BiEditAlt className="text-[1.9rem] p-2 cursor-pointer text-gray-600 hover:text-blue-500 border border-gray-300 rounded-lg" />
+                            <RiDeleteBin5Line className="text-[1rem] cursor-pointer text-[#F64E60] hover:text-red-600  rounded-lg" />
+                          </div>
+                        ) : column.id === "Permission" ? (
+                          <div className="flex justify-left">
                             <CommonButton
-                                      label="Add"
-                                      className="bg-[#FFE150] justify-center mt-10 rounded-lg w-full !text-sm !text-[#303030] text-center !font-semibold flex items-center  px-8 py-3"
-                                    />
-                        ) : column.format && typeof value === 'number' ? (
-                          column.format(value)
+                              label="Assign"
+                              className="bg-[#FFE150] justify-center  rounded-lg w-full !text-sm !text-[#303030] text-left !font-semibold flex items-center  px-8 py-3"
+                            />
+                          </div>
                         ) : (
                           value
                         )}
                       </TableCell>
-                      
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+                    );
+                  })}
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+      <div className="flex justify-between items-center mt-4 px-4">
+        <p className="text-sm font-semibold text-gray-600 mr-2">Show entries: <span className="px-2 py-1 border rounded-md">{rows.length}</span></p>
+        
+        <div className="flex items-center">
+          <button 
+            className="px-4 py-2 text-gray-700 font-medium  rounded-l-md"
+            onClick={() => handleChangePage(null, Math.max(0, page - 1))}
+            disabled={page === 0}
+          >
+            Previous
+          </button>
+          
+          <div className="px-4 py-1 flex items-center justify-center bg-yellow-100 text-gray-800 font-medium border border-yellow-200 rounded-md">
+            {page + 1}
+          </div>
+          
+          <button 
+            className="px-4 py-2 text-gray-700 font-medium rounded-r-md"
+            onClick={() => handleChangePage(null, Math.min(totalPages - 1, page + 1))}
+            disabled={page >= totalPages - 1}
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -95,7 +95,7 @@ export const Sidebar = () => {
     setOpenDropdown(openDropdown === index ? null : index);
   };
   return (
-    <div className="h-screen flex flex-col sidebar">
+    <div className="h-screen flex flex-col sidebar "style={{ minWidth: '285px', width: '285px', flexShrink: 0 }}>
     {/*  logo */}
     <div className="shrink-0">
       <img src="/assets/logo.png" alt="img-logo" className="px-6 py-8 !w-[220px]" />
