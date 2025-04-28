@@ -14,7 +14,8 @@ export const Searchbox = () => {
             '& fieldset': {
               border: 'none', 
             },'& input': {
-             padding:'8px 0px'
+             padding:'8px 0px',
+             fontSize: '0.75rem', 
             },
             '& input::placeholder': {
                 fontSize: '0.75rem', 

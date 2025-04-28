@@ -7,16 +7,15 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import GridViewIcon from '@mui/icons-material/GridView';
 import PeopleIcon from '@mui/icons-material/People';
+import { RxDashboard } from "react-icons/rx";
 import List from '@mui/material/List';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
-import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
 import HouseSidingOutlinedIcon from '@mui/icons-material/HouseSidingOutlined';
-import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import { CommonButton } from '../../common/button/CommonButton';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
-import { Dashboard } from '../../pages/dashboard/Dashboard';
+import { IoMdCheckboxOutline } from "react-icons/io";
+import { LuShoppingCart } from "react-icons/lu";
 import { useNavigate } from 'react-router-dom';
 
 export const Sidebar = () => {
@@ -25,7 +24,7 @@ export const Sidebar = () => {
   const menuItems = [
     {
       text: 'Dashboard',
-      icon: <GridViewIcon className="!text-[1.125rem] text-[#181725]" />,
+      icon: <RxDashboard className="!text-[1.125rem] text-[#181725]" />,
       path: '/dashboard'
 
     },
@@ -46,7 +45,7 @@ export const Sidebar = () => {
     },
     {
       text: 'Inventory Management',
-      icon: <LocalGroceryStoreOutlinedIcon className="!text-[1.125rem] text-[#181725]" />,
+      icon: <LuShoppingCart className="!text-[1.125rem] text-[#181725]" />,
       path: '/dashboard',
       children: [
         {
@@ -79,7 +78,7 @@ export const Sidebar = () => {
     },
     {
       text: 'Task & Logs',
-      icon: <CheckBoxOutlinedIcon className="!text-[1.125rem] text-[#181725]" />,
+      icon: <IoMdCheckboxOutline className="!text-[1.125rem] text-[#181725]" />,
       path: '/dashboard',
       children: [
         {

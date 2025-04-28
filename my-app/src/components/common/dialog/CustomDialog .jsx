@@ -28,14 +28,15 @@ export const CustomDialog = () => {
     setOpen(false);
   };
   return (
-    <React.Fragment>
+    <React.Fragment sx={{  backgroundColor: '#00000033',
+      backdropFilter: 'blur(10px)'}}>
       <CommonButton
         onClick={handleClickOpen}
         icon={<FiPlus className="mr-1 !text-[#303030]" />}
         label="Add New"
         className="bg-[#FFE150] rounded-xl w-full !text-sm !text-[#303030] !font-semibold flex items-center justify-between px-8 py-3"
       />
-      <BootstrapDialog
+      <BootstrapDialog 
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
@@ -44,6 +45,7 @@ export const CustomDialog = () => {
             borderRadius: "16px",
             width: "480px",
             maxWidth: "90%",
+           
           },
         }}
       >

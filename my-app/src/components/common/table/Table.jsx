@@ -16,8 +16,8 @@ import { CommonButton } from "../button/CommonButton";
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
-  width: 42,
-  height: 26,
+  width: 40,
+  height: 25,
   padding: 0,
   "& .MuiSwitch-switchBase": {
     padding: 0,
@@ -35,8 +35,8 @@ const IOSSwitch = styled((props) => (
   },
   "& .MuiSwitch-thumb": {
     boxSizing: "border-box",
-    width: 22,
-    height: 22,
+    width: 20,
+    height: 20,
   },
   "& .MuiSwitch-track": {
     borderRadius: 13,
@@ -48,7 +48,7 @@ const IOSSwitch = styled((props) => (
 // Table columns
 const columns = [
   { id: "Role", label: "Role", width: 140 },
-  { id: "Description", label: "Description", width: 500 },
+  { id: "Description", label: "Description", width: 550 },
   { id: "Action", label: "Action", width: 90 },
   { id: "Permission", label: "Permission", width: 90 },
 ];
@@ -144,7 +144,7 @@ export default function StickyHeadTable() {
 
   return (
     <div style={{ width: "100%", overflowX: "auto" }}>
-      <TableContainer sx={{ maxHeight: "calc(100vh - 250px)" }}>
+      <TableContainer sx={{ maxHeight: "calc(100vh - 250px)" }} className="custom-scrollbar">
         <Table stickyHeader>
           <TableHead>
             <TableRow>
@@ -188,14 +188,14 @@ export default function StickyHeadTable() {
                         {column.id === "Action" ? (
                           <div className="flex justify-left items-center gap-2">
                             <IOSSwitch  />
-                            <BiEditAlt className="text-[1.9rem] p-2 cursor-pointer text-gray-600 hover:text-blue-500 border border-gray-300 rounded-lg" />
-                            <RiDeleteBin5Line className="text-[1rem] cursor-pointer text-[#F64E60] hover:text-red-600  rounded-lg" />
+                            <BiEditAlt className="text-[1.8rem]   py-1 cursor-pointer text-gray-600  border border-gray-300 rounded-lg" />
+                            <RiDeleteBin5Line className="text-[1.9rem] px-2  py-1 cursor-pointer text-red-600 border border-gray-300 rounded-lg" />
                           </div>
                         ) : column.id === "Permission" ? (
                           <div className="flex justify-left">
                             <CommonButton
                               label="Assign"
-                              className="bg-[#FFE150] justify-center  rounded-lg w-full !text-sm !text-[#303030] text-left !font-semibold flex items-center  px-8 py-3"
+                              className="bg-[#FFE150] justify-center  rounded-lg w-full !text-sm !text-[#303030] text-left !font-semibold flex items-center  px-5 py-2"
                             />
                           </div>
                         ) : (
