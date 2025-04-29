@@ -15,6 +15,10 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
   },
+  "& .MuiBackdrop-root": {
+    backgroundColor: "#00000033", // This is equivalent to #00000033
+    backdropFilter: "blur(10px)",
+  },
 }));
 export const CustomDialog = () => {
   const [role, setRole] = useState(""); //for textfeild-role
@@ -28,8 +32,7 @@ export const CustomDialog = () => {
     setOpen(false);
   };
   return (
-    <React.Fragment sx={{  backgroundColor: '#00000033',
-      backdropFilter: 'blur(10px)'}}>
+    <React.Fragment >
       <CommonButton
         onClick={handleClickOpen}
         icon={<FiPlus className="mr-1 !text-[#303030]" />}

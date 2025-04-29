@@ -1,32 +1,46 @@
-// src/common/breadcrumb/Breadcrumb.jsx
+
 import React from 'react';
-import { Breadcrumbs, Typography } from '@mui/material';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import '../../../styles/commoncss.scss';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { Typography, Box } from '@mui/material';
+import { FaLessThan } from "react-icons/fa6";
+
+const BREADCRUMB_CONFIG = {
+  'permission': { showBack: true, parentPath: '/role-management' },
+};
+
 export const Breadcrumb = ({ breadcrumbs }) => {
-  return (
-    <Breadcrumbs
-    separator={<NavigateNextIcon fontSize="small" />}
-    aria-label="breadcrumb"
-    sx={{
-      flexGrow: 1,
-      fontWeight: 500,
-      fontSize: '16px',
-    }}
-  >
-    {breadcrumbs.map((crumb, index) => {
-      const isLast = index === breadcrumbs.length - 1;
- 
-  
-      return isLast ? (
-        <Typography className='breadcrumb !font-semibold !text-[1rem]' key={index} color="text.primary">
-          {crumb}
+  const location = useLocation();
+  const navigate = useNavigate();
+  const pathnames = location.pathname.split('/').filter(x => x);
+  if (pathnames.length === 0) {
+    return null;
+  }
+  const currentPage = pathnames[pathnames.length - 1];
+  const pageConfig = BREADCRUMB_CONFIG[currentPage] || { showBack: false };
+  const handleBackClick = (e, path) => {
+    e.preventDefault();
+    navigate(path);
+  };
+  if (pageConfig.showBack) {
+    return (
+      <Box 
+        component={Link} 
+        to={pageConfig.parentPath} 
+        onClick={(e) => handleBackClick(e, pageConfig.parentPath)}  className='flex items-center'>
+        <FaLessThan className='mr-1 text-sm text-[#303030] font-semibold' />
+        <Typography 
+      sx={{fontSize:'1rem',fontWeight:600,color:'#303030'}} >
+          Back
         </Typography>
-      ) : (
-          {crumb}
-      );
-    })}
-  </Breadcrumbs>
+      </Box>
+    );
+  }
   
+  return (
+    <Typography 
+    sx={{fontSize:'1rem',fontWeight:600,color:'#303030'}} >
+      {currentPage.replace(/-/g, ' ')}
+    </Typography>
   );
 };

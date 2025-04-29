@@ -12,6 +12,8 @@ import { styled } from "@mui/material/styles";
 import { BiEditAlt } from "react-icons/bi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { CommonButton } from "../button/CommonButton";
+import { useNavigate } from 'react-router-dom';
+
 // Your styled switch
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -141,7 +143,12 @@ export default function StickyHeadTable() {
   
 
   const totalPages = Math.ceil(rows.length / rowsPerPage);
+  const navigate = useNavigate();
 
+  const handleAssignClick = () => {
+    navigate('/permission');
+  };
+  
   return (
     <div style={{ width: "100%", overflowX: "auto" }}>
       <TableContainer sx={{ maxHeight: "calc(100vh - 250px)" }} className="custom-scrollbar">
@@ -194,6 +201,7 @@ export default function StickyHeadTable() {
                         ) : column.id === "Permission" ? (
                           <div className="flex justify-left">
                             <CommonButton
+                              onClick={handleAssignClick}
                               label="Assign"
                               className="bg-[#FFE150] justify-center  rounded-lg w-full !text-sm !text-[#303030] text-left !font-semibold flex items-center  px-5 py-2"
                             />

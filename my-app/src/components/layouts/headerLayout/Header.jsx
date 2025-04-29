@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { Breadcrumb } from '../../common/breadcrumb/Breadcrumb';
 import { Userprofile } from '../../common/Userprofile/Userprofile';
-
+import { useLocation } from 'react-router-dom';
 const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -30,26 +30,26 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 export const Header = ({ open, isMobile, handleDrawerOpen, currentRoute }) => {
+  const location = useLocation();
+
   const getBreadcrumbs = () => {
-    // Clean the route path
-    const path = currentRoute.startsWith('/') ? currentRoute.substring(1) : currentRoute;
-    switch (path) {
-      case 'dashboard':
-        return ['Dashboard'];
-      case 'role-management':
-        return ['Roles & Permissions'];
-      case '':
-        return ['Home']; 
-      default:
-        // For nested routes or custom handling
-        const segments = path.split('/').filter(segment => segment);
-        if (segments.length === 0) return ['Home'];
+    // Use breadcrumb from route state if available
+    if (location.state?.breadcrumb) {
+      return [location.state.breadcrumb];
     }
+
+    const path = currentRoute.startsWith('/') ? currentRoute.substring(1) : currentRoute;
+    const segments = path.split('/').filter(segment => segment);
+    if (segments.length === 0) return ['Home'];
+
+    return segments.map(segment =>
+      segment.charAt(0).toUpperCase() + segment.slice(1)
+    );
   };
 
   return (
     <AppBar position="static" open={open}>
-      <Toolbar >
+      <Toolbar className='flex justify-between'>
         <Breadcrumb breadcrumbs={getBreadcrumbs()} />
        <Userprofile />
       </Toolbar>
