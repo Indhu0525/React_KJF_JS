@@ -7,14 +7,14 @@ import {
   import { RiSearchLine } from "react-icons/ri";
 export const Searchbox = () => {
   return (
-    <form noValidate autoComplete="off" className='!border-red-800'>
-      <FormControl className='!w-80'>
+    <form noValidate autoComplete="off">
+      <FormControl className='!w-80 !h-full'>
         <OutlinedInput
           sx={{
             '& fieldset': {
               border: 'none', 
             },'& input': {
-             padding:'8px 0px',
+             padding:'8px 8px',
              fontSize: '0.75rem', 
             },
             '& input::placeholder': {
@@ -22,7 +22,7 @@ export const Searchbox = () => {
                
               },
           }}
-        className='bg-[#f2f2f2] !rounded-xl !placeholder:text-xs'
+        className='bg-[#f2f2f2] !rounded-xl !placeholder:text-xs !h-full'
           placeholder="Search..."
           startAdornment={
             <InputAdornment position="start">

@@ -26,7 +26,7 @@ export const MainLayout = () => {
          display: 'flex', 
          height: '100vh',
          bgcolor: '#FFE150', 
-         overflow: 'hidden'  
+      
        }}>
        <Sidebar   open={open} 
            isMobile={isMobile} 
@@ -44,15 +44,15 @@ export const MainLayout = () => {
                isMobile={isMobile} 
                handleDrawerOpen={handleDrawerOpen}
                currentRoute={location.pathname}/>
-         
            <Box sx={{ 
              flexGrow: 1, 
              bgcolor: '#ffffff',
              height: 'calc(100vh - 64px)',
-        
-             padding: 3       
-           }}>
-              <Outlet /> 
+    overflow:'auto',
+    paddingLeft:'24px',
+    paddingRight:'24px'
+           }}        className="custom-scrollbar">
+              <Outlet sx={{p:0}}/> 
           
            </Box>
          </Box>

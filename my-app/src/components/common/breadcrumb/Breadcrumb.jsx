@@ -39,8 +39,10 @@ export const Breadcrumb = ({ breadcrumbs }) => {
   
   return (
     <Typography 
-    sx={{fontSize:'1rem',fontWeight:600,color:'#303030'}} >
-      {currentPage.replace(/-/g, ' ')}
-    </Typography>
+  sx={{ fontSize: '1rem', fontWeight: 600, color: '#303030' }}
+>
+  {currentPage.replace(/-/g, ' ').replace(/^\w/, c => c.toUpperCase())}
+</Typography>
+
   );
 };

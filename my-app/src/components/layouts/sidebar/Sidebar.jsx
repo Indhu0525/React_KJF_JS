@@ -39,7 +39,7 @@ export const Sidebar = () => {
         },
         {
           text: 'User Management',
-          path: '/user role/roles',
+          path: '/user-management',
         },
       ],
     },
@@ -49,7 +49,27 @@ export const Sidebar = () => {
       path: '/dashboard',
       children: [
         {
-          text: 'inventory',
+          text: 'Material Inward',
+          path: '/Material-Inward',
+        },
+        {
+          text: 'Material Return Note',
+          path: 'inventoray/invm',
+        },
+        {
+          text: 'Material Rejection Note',
+          path: 'inventoray/invm',
+        },
+        {
+          text: 'Scrap Record',
+          path: 'inventoray/invm',
+        },
+        {
+          text: 'Cycle Count',
+          path: 'inventoray/invm',
+        },
+        {
+          text: 'Inventory',
           path: 'inventoray/invm',
         },
       ],

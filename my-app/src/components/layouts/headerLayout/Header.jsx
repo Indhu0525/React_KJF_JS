@@ -16,8 +16,8 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  backgroundColor: '#ffffff', // White header
-  color: '#000000', // Black text
+  backgroundColor: '#ffffff', 
+  color: '#000000', 
   boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.1)',
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -49,7 +49,7 @@ export const Header = ({ open, isMobile, handleDrawerOpen, currentRoute }) => {
 
   return (
     <AppBar position="static" open={open}>
-      <Toolbar className='flex justify-between'>
+      <Toolbar className='flex justify-between min-h-10'>
         <Breadcrumb breadcrumbs={getBreadcrumbs()} />
        <Userprofile />
       </Toolbar>

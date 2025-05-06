@@ -6,6 +6,7 @@ export const CommonButton = ({
   className = "",
   type = "button",
   icon = null,
+  iconPosition = "left", // NEW PROP
   wrapperClassName = "",
 }) => {
   return (
@@ -15,8 +16,13 @@ export const CommonButton = ({
         onClick={onClick}
         className={`bg-[#F1D954] ${className}`}
       >
-        {icon && <span className={`icon mr-1`}>{icon}</span>}
+        {iconPosition === "left" && icon && (
+          <span className="icon mr-1">{icon}</span>
+        )}
         {label}
+        {iconPosition === "right" && icon && (
+          <span className="icon ml-1">{icon}</span>
+        )}
       </button>
     </div>
   );

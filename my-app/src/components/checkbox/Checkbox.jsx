@@ -1,46 +1,86 @@
-// checkbox/Checkbox.js
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Checkbox from '@mui/material/Checkbox';
+import { FormControlLabel, Box, Typography } from "@mui/material";
+import CheckIcon from '@mui/icons-material/Check';
+import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
+import { styled } from '@mui/material/styles';
 
-const BpIcon = styled('span')(({ theme }) => ({
-  borderRadius: 5,
-  width: 18,
-  height: 18,
-  boxShadow: 'inset 0 0 0 1px #D1D1D1, inset 0 -1px #D1D1D1',
- 
-  
-
-}));
-
-const BpCheckedIcon = styled(BpIcon)({
-  backgroundColor: '#137cbd',
-
-  '&::before': {
-    display: 'block',
-    width: 18,
-    height: 18,
-    backgroundImage:
-      "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath" +
-      " fill-rule='evenodd' clip-rule='evenodd' d='M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 " +
-      "1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z' fill='%23fff'/%3E%3C/svg%3E\")",
-    content: '""',
-  },
-  'input:hover ~ &': {
-    backgroundColor: '#106ba3',
-  },
+// Styled box for icons
+const StyledBox = styled(Box)({
+  width: 19,
+  height: 19,
+  border: '1px solid #D1D1D1',
+  borderRadius: '6px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
-export default function CustomizedCheckbox(props) {
-  return (
+// Custom icon components
+const UncheckedIcon = <StyledBox />;
+const CheckedIcon = (bg = 'red') => (
+  <StyledBox sx={{ backgroundColor: bg ,color:'red'}}>
+    <CheckIcon style={{ fontSize: 14, color: 'white' }} />
+  </StyledBox>
+);
+const IndeterminateIcon = (
+  <StyledBox sx={{ backgroundColor: 'white', color: '#666666' }}>
+    <IndeterminateCheckBoxIcon />
+  </StyledBox>
+);
+
+export default function CustomizedCheckbox({ section, actions = [] }) {
+  const [checked, setChecked] = React.useState(actions.map(() => false));
+
+  const allChecked = checked.every(Boolean);
+  const anyChecked = checked.some(Boolean);
+
+  const handleParentChange = (e) => {
+    setChecked(actions.map(() => e.target.checked));
+  };
+
+  const handleChildChange = (index) => (e) => {
+    const newChecked = [...checked];
+    newChecked[index] = e.target.checked;
+    setChecked(newChecked);
+  };
+
+  const CustomCheckbox = (props) => (
     <Checkbox
-      sx={{ '&:hover': { bgcolor: 'transparent' } }}
-      disableRipple
-      color="default"
-      checkedIcon={<BpCheckedIcon />}
-      icon={<BpIcon />}
-      inputProps={{ 'aria-label': 'Checkbox demo' }}
-      {...props} // Accept checked, onChange, etc.
+      icon={UncheckedIcon}
+      checkedIcon={CheckedIcon( '#1976d2')}
+      indeterminateIcon={IndeterminateIcon}
+      {...props}
     />
+  );
+  return (
+    <Box sx={{ mb: 2 }}>
+      <FormControlLabel
+        label={<Typography sx={{color:'#303030',fontWeight:600,fontSize:'0.9rem'}}>{section}</Typography>}
+        control={
+          <CustomCheckbox
+            checked={allChecked}
+            indeterminate={!allChecked && anyChecked}
+            onChange={handleParentChange}
+          />
+        }
+      />
+      {actions.length > 0 && (
+        <Box sx={{ display: 'flex', ml: 3, gap: 15, }}>
+          {actions.map((action, index) => (
+            <FormControlLabel
+              key={action}
+              label={<Typography sx={{color:'#303030',fontWeight:500,fontSize:'0.9rem'}}>{action}</Typography>}
+              control={
+                <CustomCheckbox
+                  checked={checked[index]}
+                  onChange={handleChildChange(index)}
+                />
+              }
+            />
+          ))}
+        </Box>
+      )}
+    </Box>
   );
 }
