@@ -8,13 +8,9 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Switch,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { BiEditAlt } from "react-icons/bi";
-import { RiDeleteBin5Line } from "react-icons/ri";
 import { CommonButton } from "../button/CommonButton";
-import { Switchtoggle } from "../switchbuton/Switch";
+
 
 export default function ReusableTable({
   columns = [],

@@ -1,11 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { BiEditAlt } from "react-icons/bi";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { TbLockShare } from "react-icons/tb";
 import ReusableTable from '../../../common/table/Table';
-import { Switchtoggle } from '../../../common/switchbuton/Switch';
+
 
 const roleColumns = [
     { id: "DateTime", label: "Created Date & Time", width: 200 },

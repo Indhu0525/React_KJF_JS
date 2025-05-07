@@ -52,7 +52,7 @@ export default function HorizontalNonLinearStepper() {
     setActiveStep(step);
   };
   const [role, setRole] = useState("");
-  const [description, setDescription] = useState("");
+
   const handleChange = (event) => {
     setRole(event.target.value);
   };
@@ -255,7 +255,7 @@ export default function HorizontalNonLinearStepper() {
                       </div>
                     </Grid>
                   </Grid>
-                  {/* <p className="flex justify-end text-[#015ED6] text-xs mt-2 semibold">+ Addmore</p> */}
+               
                  <div className="flex justify-end">
                   <CommonButton
                    icon={<GoPlus className="ml-1" />}

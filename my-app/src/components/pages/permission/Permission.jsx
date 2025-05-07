@@ -32,15 +32,23 @@ const permissionsData = [
     section: "Material Issue to Production",
     actions: ["Create", "Read", "Update", "Export"],
   },
+  {
+    section: " Issue to Production",
+    actions: ["Create", "Read", "Update", "Export"],
+  },
+  {
+    section: " Production",
+    actions: ["Create", "Read", "Update", "Export"],
+  },
 ];
 
 export const Permission = () => {
   return (
-    <Box>
+    <Box sx={{paddingBottom:'30px'}}>
       {permissionsData.map((item, index) => (
         <CustomizedCheckbox
  
-        sx={{overflow:'auto',}}
+        sx={{overflow:'auto'}}
           key={index}
           section={item.section}
           actions={item.actions || []}

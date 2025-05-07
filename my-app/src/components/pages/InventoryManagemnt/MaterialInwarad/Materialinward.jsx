@@ -23,7 +23,7 @@ export const Materialinward = () => {
         label="Add New"
         iconPosition="left"
         onClick={(row) => navigate("/Material-form") }
-        className=" rounded-xl px-5 py-3 w-full !text-sm !text-[#181725] !font-semibold flex items-center gap-2 "/> 
+        className="bg-[#FFE150] rounded-xl px-5 py-3 w-full !text-sm !text-[#181725] !font-semibold flex items-center gap-2 "/> 
       
      </div>
      <div className="flex-1 overflow-auto px-0 pb-4">
